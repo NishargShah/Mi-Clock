@@ -1,4 +1,4 @@
-#container {
+.container {
     position: relative;
     width: 420px;
     height: 420px;
@@ -8,7 +8,7 @@
     transform-origin: 0 0;
 }
 
-#dials {
+.dials {
     position: absolute;
     top: 40px;
     left: 50%;
@@ -17,7 +17,7 @@
     transform-origin: bottom center;
 }
 
-#cutline {
+.cutline {
     background-color: white;
     width: 1px;
     height: 20px;
@@ -25,19 +25,19 @@
     transition: 1s;
 }
 
-#cutline.one {
+.cutline.one {
     opacity: 1;
     transition: 0s;
 }
 
-#img {
+.round_img {
     position: absolute;
     top: 15px;
     left: 25px; /*left: 20px;*/
     width: 615px; /*width: 550px;*/
 }
 
-#circle {
+.circle {
     width: 300px;
     height: 300px;
     border-radius: 50%;
@@ -47,7 +47,7 @@
     border: 1px solid white;
 }
 
-#dot {
+.dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -60,7 +60,7 @@
     z-index: 1001;
 }
 
-#mline, #hline {
+.mline, .hline {
     position: absolute;
     top: calc(50% - 1px);
     left: calc(50% - 1px);
@@ -73,12 +73,12 @@
     border-bottom-right-radius: 20px;
 }
 
-#hline {
+.hline {
     height: 70px;
     opacity: 0.6;
 }
 
-#tringle {
+.tringle {
     width: 0;
     height: 0;
     position: absolute;
@@ -88,7 +88,7 @@
     border-top: 8px solid white;
 }
 
-#tringleM {
+.tringleM {
     width: 20px;
     height: 140px;
     position: absolute;
@@ -100,12 +100,12 @@
 }
 
 @media only screen and (max-width: 768px) {
-    #container {
+    .container {
         transform: scale(0.823);
         margin: -10px;
     }
 
-    #img {
+    .round_img {
         position: absolute;
         top: 5px;
         left: 9px;
@@ -114,12 +114,12 @@
 }
 
 @media screen and (max-width: 1000px) and (min-width: 600px) {
-    #container {
+    .container {
         transform: scale(1.369);
         margin: -10px;
     }
 
-    #img {
+    .round_img {
         position: absolute;
         top: 10px;
         left: 20px;
