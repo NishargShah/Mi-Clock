@@ -4,7 +4,7 @@
     height: 420px;
     padding: 10px;
     background-color: #4682B4;
-    transform: scale(1.47); /*transform: scale(1.31);*/
+    transform: scale(1.47);
     transform-origin: 0 0;
 }
 
@@ -52,9 +52,9 @@
     height: 10px;
     border-radius: 50%;
     position: absolute;
-    margin: -10px;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, -50%);
     border: 5px solid white;
     background: #4682B4;
     z-index: 1001;
