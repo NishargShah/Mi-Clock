@@ -1,35 +1,80 @@
-var clock = "";
+let UIController = (() => {
+    // ALL DATA
+    let DOMData = {
+        dials: '.dial', dot: '.dot', cutLine: '.cut_line', clock: '',
+        minuteLine: '.minute_line', hourLine: '.hour_line', clockLength: 360,
+        triangleManager: '.triangle_manager', triangle: '.triangle', shadow: '.shadow',
+        container: '.container', roundImage: '.round_img',
+    };
 
-for (var i = 0; i < 360; i++) {
-    clock += "<span class='dials'><div class='cutline'></div></span>";
-}
-clock += "<div class='dot'></div>";
-clock += "<div class='mline'></div>";
-clock += "<div class='hline'></div>";
-clock += "<div class='tringleM'><div class='tringle'></div><div class='shadow'></div></div>";
+    // RETURN OF UIController
+    return {
+        getDOMData: () => DOMData
+    }
+})();
 
-document.querySelector('.container').innerHTML = clock;
+let updateController = (ui => {
+    //  GET DATA FROM UIController
+    const updateDOM = ui.getDOMData();
+    let clock, clockLength;
+    clockLength = updateDOM.clockLength;
 
-for (var i = 1; i <= 360; i++) {
-    document.querySelector('.dials:nth-child(' + i + ')').style.transform = "rotate(" + (i - 1) + "deg)";
-}
+    let writeHtml = () => {
+        clock = updateDOM.clock;
 
-/* Real Time Clock */
-var hour, min, lol, lol1, lol2, second;
+        // REPEAT CLOCK DIAL 360 TIMES
+        for (let i = 0; i < clockLength; i++) {
+            clock +=
+            `
+                <span class="dial">
+                    <div class="cut_line"></div>
+                </span>
+            `;
+        }
 
-second = moment().second() * 6;
+        // ADD HTML AFTER LOOP FINISH
+        clock +=
+        `
+            <div class="dot"></div>
+            <div class="minute_line"></div>
+            <div class="hour_line"></div>
+            <div class="triangle_manager">
+                <div class="triangle"></div>
+                <div class="shadow"></div>
+            </div>
+        `;
 
-setInterval(function () {
-    hour = moment().hours();
-    min = moment().minutes() * 6;
-    hour = moment().hours() % 12 / 12 * 360 + (min / 12);
-    lol = document.querySelector('.mline').style.transform = "rotate(" + (180 + min) + "deg)";
-    lol1 = document.querySelector('.hline').style.transform = "rotate(" + (180 + hour) + "deg)";
-}, 1000);
+        // INSERT ABOVE HTML INTO CONTAINER CLASS
+        document.querySelector(updateDOM.container).innerHTML = clock;
+    };
 
-setInterval(function () {
-    second++;
-    lol2 = document.querySelector('.tringleM').style.transform = "rotate(" + (180 + second) + "deg)";
-    document.querySelector('.container span:nth-of-type(' + ((second - 4) % 360 + 1) + ') .cutline').classList.add('one');
-    document.querySelector('.container span:nth-of-type(' + ((second - 30 + 360) % 360 + 1) + ') .cutline').classList.remove('one');
-}, (60 / 360) * 1000);
+    // MAKE DIALS IN UI
+    let makeDials = () => {
+        for (let i = 1; i <= clockLength; i++) {
+            document.querySelector(`${updateDOM.dials}:nth-child(${i})`).style.transform = `rotate(${(i - 1)}deg)`;
+        }
+    };
+
+    // FINAL FUNCTION FOR CLOCK
+    let clockReady = () => {
+        writeHtml();
+        makeDials();
+    };
+
+    // RETURN OF updateController
+    return {
+        getClock: () => clockReady()
+    }
+})(UIController);
+
+let controller = ((ui, update) => {
+
+    // RETURN OF controller
+    return {
+        init: () => {
+            update.getClock();
+        }
+    }
+})(UIController, updateController);
+
+controller.init();

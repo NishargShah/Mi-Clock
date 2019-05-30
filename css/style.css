@@ -8,7 +8,7 @@
     transform-origin: 0 0;
 }
 
-.dials {
+.dial {
     position: absolute;
     top: 40px;
     left: 50%;
@@ -17,7 +17,7 @@
     transform-origin: bottom center;
 }
 
-.cutline {
+.cut_line {
     background-color: white;
     width: 1px;
     height: 20px;
@@ -25,7 +25,7 @@
     transition: 1s;
 }
 
-.cutline.one {
+.cut_line.one {
     opacity: 1;
     transition: 0s;
 }
@@ -60,7 +60,7 @@
     z-index: 1001;
 }
 
-.mline, .hline {
+.minute_line, .hour_line {
     position: absolute;
     top: calc(50% - 1px);
     left: calc(50% - 1px);
@@ -73,12 +73,12 @@
     border-bottom-right-radius: 20px;
 }
 
-.hline {
+.hour_line {
     height: 70px;
     opacity: 0.6;
 }
 
-.tringle {
+.triangle {
     width: 0;
     height: 0;
     position: absolute;
@@ -88,7 +88,7 @@
     border-top: 8px solid white;
 }
 
-.tringleM {
+.triangle_manager {
     width: 20px;
     height: 140px;
     position: absolute;
